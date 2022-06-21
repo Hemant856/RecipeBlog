@@ -9,5 +9,3 @@ router.get('/', recipeController.homepage);
 
 
 module.exports = router;
-
-/node_modules

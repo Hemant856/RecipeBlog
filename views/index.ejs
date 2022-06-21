@@ -25,48 +25,28 @@
 <!-- Categories Start -->
 
 <div class="row row-cols-2 row-cols-lg-6 g-2 g-lg-3 py-3">
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-            <img src="img/american-food.jpg" alt="American Food" loading="laxy">
-        </div>
-        <div class="pt-1">American Food</div>
-    </a>
 
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-            <img src="img/mexican-food.jpg" alt="American Food" loading="laxy">
-        </div>
-        <div class="pt-1">Mexican Food</div>
-    </a>
-
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-            <img src="img/key-lime-pie.jpg" alt="American Food" loading="laxy">
-        </div>
-        <div class="pt-1">Lime Pie</div>
-    </a>
-
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-            <img src="img/crab-cakes.jpg" alt="American Food" loading="laxy">
-        </div>
-        <div class="pt-1">Crab Cake</div>
-    </a>
-
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-            <img src="img/chinese-food.jpg" alt="American Food" loading="laxy">
-        </div>
-        <div class="pt-1">Chinese Food</div>
-    </a>
+   <!-- <%= categories[0].image %> -->
     
+   <% for(let count = 0; count < categories.length ; count++ ){ %>
+	
+    <a href="categories/<%= categories[count].name %>" class="col text-center category__link">
+        <div class="category__img shadow">
+            <img src="img/<%= categories[count].image %>" alt="<%= categories[count].name %>" loading="laxy">
+        </div>
+        <div class="pt-1"><%= categories[count].name %></div>
+    </a>
+
+
+<% } %>
+
+
     <a href="#" class="col text-center category__link">
         <div class="category__img shadow">
-            <img src="img/spring-rolls.jpg" alt="American Food" loading="laxy">
+            <img src="img/view-all.jpg" alt="view All" loading="laxy">
         </div>
-        <div class="pt-1">Spring Roll</div>
+        <div class="pt-1">View all</div>
     </a>
-    
 
 
 </div>
