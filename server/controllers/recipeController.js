@@ -140,6 +140,29 @@ exports.exploeLatest = async(req, res) =>{
 
 
 
+/**
+ * GET/explore-random 
+ * Explore Random as Json
+ */
+
+ exports.exploeRandom = async(req, res) =>{
+
+    try{
+        let count = await Recipe.find().countDocuments();
+        // console.log(count);
+        let random = Math.floor(Math.random() * count);
+        // console.log(random);
+        let recipe = await Recipe.findOne().skip(random).exec();
+
+        //res.json(recipe);
+         res.render('explore-random.ejs', {title : 'Cooking Blog - Random Recipe', recipe});
+    } catch(error){
+       res.status(500).send({message: error.message || "Error Occured"});
+    
+    }
+    
+}
+
 
 
 
