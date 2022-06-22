@@ -40,7 +40,7 @@ exports.exploeCategories = async(req, res) =>{
     try{
         const limitNum = 20;
         const categories = await Category.find({}).limit(limitNum);
-    
+        //console.log(categories.length);
         //Whatever you send from here(as 2nd argument) that will be available in index.ejs(1st argument);
         res.render('categories.ejs', {title : 'Cooking Blog - categories', categories});
     } catch(error){
@@ -48,39 +48,126 @@ exports.exploeCategories = async(req, res) =>{
     
     }
     
+}
+
+
+
+/**
+ * GET/Ctegories/:id
+ * Categories By Id
+ */
+ exports.exploeCategoriesById = async(req, res) =>{
+
+    try{
+
+        let categoryId = req.params.id;
+
+        const limitNum = 20;
+        console.log(categoryId);
+        const categoriesById = await Recipe.find({'category': categoryId}).limit(limitNum);
+    
+         //console.log(categoriesById.length);
+        //Whatever you send from here(as 2nd argument) that will be available in index.ejs(1st argument);
+        res.render('categories.ejs', {title : 'Cooking Blog - categories', categoriesById});
+    } catch(error){
+       res.status(500).send({message: error.message || "Error Occured"});
+    
     }
+    
+}
+
+
+
+/**
+ * GET/Recipe/:id
+ * Categories
+ */
+ exports.exploeRecipe = async(req, res) =>{
+
+    try{
+        
+      let recipeId = req.params.id;
+      const recipe = await Recipe.findById(recipeId);
+
+        //Whatever you send from here(as 2nd argument) that will be available in index.ejs(1st argument);
+        res.render('recipe.ejs', {title : 'Cooking Blog - Recipe', recipe});
+    } catch(error){
+       res.status(500).send({message: error.message || "Error Occured"});
+    
+    }
+    
+}    
+
+
+exports.searchRecipe = async(req, res) =>{
+
+    res.render('search', {title : 'Cooking Blog - Recipe'});
+
+    // try{
+        
+    //   let recipeId = req.params.id;
+    //   const recipe = await Recipe.findById(recipeId);
+
+    //     //Whatever you send from here(as 2nd argument) that will be available in index.ejs(1st argument);
+    //     res.render('recipe.ejs', {title : 'Cooking Blog - Recipe', recipe});
+    // } catch(error){
+    //    res.status(500).send({message: error.message || "Error Occured"});
+    
+    // }
+    
+}    
 
 
 
 
 
-// async function insertDynamicCategoryData(){
-//     try{
-//        await Category.insertMany([
-//         {
-//             "name": "Thai",
-//             "image": 'thai-food.jpg'
-//         },
-//         {
-//             "name": "Thai",
-//             "image": 'thai-food.jpg'
-//         },
-//         {
-//             "name": "Thai",
-//             "image": 'thai-food.jpg'
-//         },
-//         {
-//             "name": "Thai",
-//             "image": 'thai-food.jpg'
-//         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// async function insertDymmyCategoryData(){
+//   try {
+//     await Category.insertMany([
+//       {
+//         "name": "Thai",
+//         "image": "thai-food.jpg"
+//       },
+//       {
+//         "name": "American",
+//         "image": "american-food.jpg"
+//       }, 
+//       {
+//         "name": "Chinese",
+//         "image": "chinese-food.jpg"
+//       },
+//       {
+//         "name": "Mexican",
+//         "image": "mexican-food.jpg"
+//       }, 
+//       {
+//         "name": "Indian",
+//         "image": "indian-food.jpg"
+//       },
+//       {
+//         "name": "Spanish",
+//         "image": "spanish-food.jpg"
+//       }
 //     ]);
-
-//     } catch{
-//       console.log('err');
-//     }
+//   } catch (error) {
+//     console.log('err', + error)
+//   }
 // }
 
-// insertDynamicCategoryData();
+// insertDymmyCategoryData();
 
 
 
