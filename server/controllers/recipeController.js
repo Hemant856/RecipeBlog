@@ -101,20 +101,22 @@ exports.exploeCategories = async(req, res) =>{
 
 exports.searchRecipe = async(req, res) =>{
 
-    res.render('search', {title : 'Cooking Blog - Recipe'});
+//  SearchTerm
 
-    // try{
-        
-    //   let recipeId = req.params.id;
-    //   const recipe = await Recipe.findById(recipeId);
+   try{
+      let searchTerm = req.body.searchTerm;
+      
+      //How to make query 
+      let recipe = await Recipe.find({$text: {$search: searchTerm, $diacriticSensitive:true}}  );
+     
+      res.render('search', {title : 'Cooking Blog - Searched Recipe', recipe});
 
-    //     //Whatever you send from here(as 2nd argument) that will be available in index.ejs(1st argument);
-    //     res.render('recipe.ejs', {title : 'Cooking Blog - Recipe', recipe});
-    // } catch(error){
-    //    res.status(500).send({message: error.message || "Error Occured"});
-    
-    // }
-    
+   } catch {
+      res.status(500).send({message: error.message || "Error Occured"});
+
+   }
+
+   
 }    
 
 
